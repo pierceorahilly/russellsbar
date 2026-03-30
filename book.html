@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Book a Table – Russells Select Bar</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="booking.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <span class="hero-wordmark"><span class="hero-r-badge">R</span>ussells</span>
+        <span class="nav-selectbar">Select Bar</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">About</a></li>
+        <li><a href="index.html#menu">Menu</a></li>
+        <li><a href="index.html#gallery">Gallery</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="book.html" class="nav-cta active">Book a Table</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <div class="page-hero-overlay"></div>
+    <img src="bar2.jpg" alt="Russells interior" class="page-hero-bg" />
+    <div class="page-hero-content">
+      <span class="section-label">Reserve Your Spot</span>
+      <h1>Book a Table</h1>
+      <p>Choose your date, time and party size — we'll take care of the rest.</p>
+    </div>
+  </section>
+
+  <!-- BOOKING APP -->
+  <section class="booking-section">
+    <div class="container">
+
+      <!-- PROGRESS BAR -->
+      <div class="progress-bar-wrap">
+        <div class="progress-steps">
+          <div class="progress-step active" id="ps1">
+            <div class="ps-circle">1</div>
+            <span>Choose Date</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" id="ps2">
+            <div class="ps-circle">2</div>
+            <span>Guests</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" id="ps3">
+            <div class="ps-circle">3</div>
+            <span>Your Details</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" id="ps4">
+            <div class="ps-circle">4</div>
+            <span>Confirm</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="booking-wrapper">
+
+        <!-- ══ MAIN FORM AREA ══ -->
+        <div class="booking-main">
+
+          <!-- ── STEP 1: DATE ── -->
+          <div class="bstep active" id="bstep1">
+            <h2 class="step-heading">When would you like to visit?</h2>
+
+            <div class="calendar-wrap">
+              <div class="calendar-header">
+                <button type="button" class="cal-nav" id="calPrev">&#8592;</button>
+                <span class="cal-month-label" id="calMonthLabel"></span>
+                <button type="button" class="cal-nav" id="calNext">&#8594;</button>
+              </div>
+              <div class="calendar-grid">
+                <div class="cal-day-name">Mon</div>
+                <div class="cal-day-name">Tue</div>
+                <div class="cal-day-name">Wed</div>
+                <div class="cal-day-name">Thu</div>
+                <div class="cal-day-name">Fri</div>
+                <div class="cal-day-name">Sat</div>
+                <div class="cal-day-name">Sun</div>
+              </div>
+              <div class="calendar-days" id="calendarDays"></div>
+            </div>
+
+            <div class="bstep-footer">
+              <button type="button" class="btn btn-primary" id="step1Next" disabled>Select a date to continue &rarr;</button>
+            </div>
+          </div>
+
+          <!-- ── STEP 2: GUESTS ── -->
+          <div class="bstep" id="bstep2">
+            <h2 class="step-heading">How many guests?</h2>
+            <p class="step-sub" id="step2Sub"></p>
+
+            <div class="guest-selector">
+              <div class="guest-chips">
+                <button type="button" class="guest-chip" data-guests="1">1</button>
+                <button type="button" class="guest-chip" data-guests="2">2</button>
+                <button type="button" class="guest-chip" data-guests="3">3</button>
+                <button type="button" class="guest-chip" data-guests="4">4</button>
+                <button type="button" class="guest-chip" data-guests="5">5</button>
+                <button type="button" class="guest-chip" data-guests="6">6</button>
+                <button type="button" class="guest-chip" data-guests="7">7</button>
+                <button type="button" class="guest-chip" data-guests="8">8</button>
+                <button type="button" class="guest-chip large-party" data-guests="9">9+</button>
+              </div>
+              <p class="large-party-msg" id="largePartyMsg">For parties of 9 or more please <a href="index.html#contact">call us directly</a>.</p>
+            </div>
+
+            <div class="bstep-footer">
+              <button type="button" class="btn btn-ghost" onclick="goToStep(1)">&larr; Back</button>
+              <button type="button" class="btn btn-primary" id="step2Next" disabled>Continue &rarr;</button>
+            </div>
+          </div>
+
+          <!-- ── STEP 3: DETAILS ── -->
+          <div class="bstep" id="bstep3">
+            <h2 class="step-heading">Your details</h2>
+
+            <div class="booking-summary-bar" id="summaryBar3"></div>
+
+            <form id="detailsForm" novalidate>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="firstName">First Name *</label>
+                  <input type="text" id="firstName" placeholder="John" required />
+                </div>
+                <div class="form-group">
+                  <label for="lastName">Last Name *</label>
+                  <input type="text" id="lastName" placeholder="Doe" required />
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="email">Email *</label>
+                  <input type="email" id="email" placeholder="john@example.com" required />
+                </div>
+                <div class="form-group">
+                  <label for="phone">Phone *</label>
+                  <input type="tel" id="phone" placeholder="+353 00 000 0000" required />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="occasion">Occasion (optional)</label>
+                <select id="occasion">
+                  <option value="">No special occasion</option>
+                  <option value="Birthday">Birthday</option>
+                  <option value="Anniversary">Anniversary</option>
+                  <option value="Date Night">Date Night</option>
+                  <option value="Business Meal">Business Meal</option>
+                  <option value="Celebration">Celebration</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="requests">Special Requests / Dietary Requirements</label>
+                <textarea id="requests" rows="3" placeholder="e.g. window seat, nut allergy, high chair..."></textarea>
+              </div>
+              <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="carveryOpt" />
+                  <span class="checkmark"></span>
+                  We'd like the Carvery Lunch – €20pp (Mon–Fri, 12–3pm only)
+                </label>
+              </div>
+              <div class="form-group checkbox-group">
+                <label class="checkbox-label">
+                  <input type="checkbox" id="privacyOpt" required />
+                  <span class="checkmark"></span>
+                  I agree to Russells storing my contact details for this reservation *
+                </label>
+              </div>
+            </form>
+
+            <div class="bstep-footer">
+              <button type="button" class="btn btn-ghost" onclick="goToStep(2)">&larr; Back</button>
+
+              <button type="button" class="btn btn-primary" onclick="submitBooking()">Review Booking &rarr;</button>
+            </div>
+          </div>
+
+          <!-- ── STEP 4: CONFIRMATION ── -->
+          <div class="bstep" id="bstep4">
+            <div class="confirmation-wrap">
+              <div class="conf-icon">&#10003;</div>
+              <h2>Booking Confirmed!</h2>
+              <p class="conf-intro">Thank you, <strong id="confName"></strong>. Your table is reserved.</p>
+
+              <div class="conf-card" id="confCard"></div>
+
+              <p class="conf-note">A confirmation will be sent to <strong id="confEmail"></strong>. If you need to make any changes, call us on <strong>+353 61 000 000</strong>.</p>
+
+              <div class="conf-actions">
+                <a href="index.html" class="btn btn-outline">Back to Home</a>
+                <button type="button" class="btn btn-primary" onclick="newBooking()">Make Another Booking</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ══ SIDEBAR ══ -->
+        <aside class="booking-sidebar">
+
+          <!-- Live Summary Card -->
+          <div class="sidebar-card summary-card" id="liveSummary">
+            <h3>Your Booking</h3>
+            <div class="summary-rows" id="summaryRows">
+              <div class="summary-empty">Select a date and time to see your booking summary here.</div>
+            </div>
+          </div>
+
+          <!-- Info Card -->
+          <div class="sidebar-card">
+            <h3>Good to Know</h3>
+            <ul class="sidebar-list">
+              <li>
+                <span class="sidebar-icon">🕐</span>
+                <div>
+                  <strong>Opening Hours</strong>
+                  <p>Mon–Thu: 12pm – 11:30pm</p>
+                  <p>Fri–Sat: 12pm – 12:30am</p>
+                  <p>Sun: 12pm – 11pm</p>
+                </div>
+              </li>
+              <li>
+                <span class="sidebar-icon">👥</span>
+                <div>
+                  <strong>Large Groups</strong>
+                  <p>Parties of 9+ please call us to arrange.</p>
+                </div>
+              </li>
+              <li>
+                <span class="sidebar-icon">🍖</span>
+                <div>
+                  <strong>Carvery Lunch</strong>
+                  <p>Mon–Fri 12–3pm · €20pp incl. dessert</p>
+                </div>
+              </li>
+              <li>
+                <span class="sidebar-icon">📞</span>
+                <div>
+                  <strong>Call Us</strong>
+                  <p>+353 61 000 000</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="sidebar-card sidebar-card--red">
+            <img src="carvery.jpg" alt="Carvery" style="width:100%;border-radius:6px;margin-bottom:1rem;" />
+            <h3>Carvery Lunch &amp; Dessert</h3>
+            <p class="price-tag">€20 <span>per person</span></p>
+            <p>Mon – Fri &nbsp;|&nbsp; 12pm – 3pm</p>
+          </div>
+
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-logo">
+        <img src="rus logo.png" alt="Russells Select Bar" />
+        <p>24 Russell Road, Limerick, V94 5N42</p>
+      </div>
+      <div class="footer-links">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="index.html#menu">Menu</a></li>
+          <li><a href="book.html">Book a Table</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-hours">
+        <h4>Opening Hours</h4>
+        <ul>
+          <li><span>Mon – Thu</span><span>12pm – 11:30pm</span></li>
+          <li><span>Fri – Sat</span><span>12pm – 12:30am</span></li>
+          <li><span>Sunday</span><span>12pm – 11pm</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Russells Select Bar. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+  <script src="booking.js"></script>
+</body>
+</html>
